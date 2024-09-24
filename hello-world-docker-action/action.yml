@@ -2,9 +2,9 @@ name: 'Hello World Docker Action'
 description: 'Say hello to a user or the world.'
 inputs:
   who-to-greet:
-    description: 'Who to greet'
+    description: 'Å vem fan är du?'
     required: true
-    default: 'world'
+    default: 'Världen'
 outputs:
   time:
     description: 'The time we said hello.'
