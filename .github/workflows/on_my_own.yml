@@ -16,36 +16,32 @@ jobs:
           echo "- [ ] 🖥️ Repository cloned to runner" >> $GITHUB_STEP_SUMMARY
           echo "- [ ] 💡 Listing files in repository" >> $GITHUB_STEP_SUMMARY
 
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-        name: Update Step 1 in Summary
+      - name: Update Step 1 in Summary
         run: |
+          echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
           sed -i 's/- \[ \] 🎉 Job triggered by/- [x] 🎉 Job triggered by/' $GITHUB_STEP_SUMMARY
 
-      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-        name: Update Step 2 in Summary
+      - name: Update Step 2 in Summary
         run: |
+          echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
           sed -i 's/- \[ \] 🐧 Running on/- [x] 🐧 Running on/' $GITHUB_STEP_SUMMARY
 
-      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-        name: Update Step 3 in Summary
+      - name: Update Step 3 in Summary
         run: |
+          echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
           sed -i 's/- \[ \] 🔎 Branch/- [x] 🔎 Branch/' $GITHUB_STEP_SUMMARY
 
       - name: Check out repository code
         uses: actions/checkout@v4
-        name: Update Step 4 in Summary
+
+      - name: Update Step 4 in Summary
         run: |
+          echo "🖥️ The repository has been cloned to the runner."
           sed -i 's/- \[ \] 🖥️ Repository cloned to/- [x] 🖥️ Repository cloned to/' $GITHUB_STEP_SUMMARY
 
-      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-        name: Update Step 5 in Summary
-        run: |
-          sed -i 's/- \[ \] 💡 Listing files/- [x] 💡 Listing files/' $GITHUB_STEP_SUMMARY
-
-      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
-      
-      - name: List files in the repository
+      - name: Update Step 5 in Summary
         run: |
           ls ${{ github.workspace }}
-      
+          sed -i 's/- \[ \] 💡 Listing files/- [x] 💡 Listing files/' $GITHUB_STEP_SUMMARY
+
       - run: echo "🍏 This job's status is ${{ job.status }}."
