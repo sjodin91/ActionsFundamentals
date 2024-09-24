@@ -6,6 +6,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Say hello 
-        uses: sjodin91/hello-world-docker-action@v3
+        uses: sjodin91/hello-world-docker-action@v4
         with:
           who-to-greet: '@octocat'
