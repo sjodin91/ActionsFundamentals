@@ -16,10 +16,29 @@ on:
         required: true
 
 
-Test:
+PreTest:
   runs-on: ubuntu-latest
   if: github.event_name == 'workflow_dispatch'
   needs: Build
+  environment: Test
+  steps:
+    - run: echo "🧪 PreTest Testing..."
+
+PreLoad-Test:
+  runs-on: ubuntu-latest
+  if: github.event_name == 'workflow_dispatch'
+  needs: Build
+  environment: Load-Test
+  steps:
+    - run: |
+        echo "🧪 PreLoad-Test Testing..."
+        sleep 15
+
+
+Test:
+  runs-on: ubuntu-latest
+  if: github.event_name == 'workflow_dispatch'
+  needs: [Build, PreTest]
   environment: Test
   steps:
     - run: echo "🧪 Testing..."
@@ -28,7 +47,7 @@ Load-Test:
   runs-on: ubuntu-latest
   if: github.event_name == 'workflow_dispatch'
   needs: Build
-  environment: Load-Test
+  environment: [Load-Test,PreLoad-Test]
   steps:
     - run: |
         echo "🧪 Testing..."
